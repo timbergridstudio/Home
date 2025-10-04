@@ -38,27 +38,27 @@
           const [logoError, setLogoError] = useState(false);
 
           // NEW: Simplified, flat data structure for the gallery. 
-          // Add, remove, or modify photos here easily.
+          // All 'src' paths now use the root-relative format (/images/...)
           const galleryData = [
-            { id: 'g-001', src: 'images/gallery1.jpg', caption: 'Custom Gazebo' },
-            { id: 'g-002', src: 'images/gallery2.jpg', caption: 'New build in Lillooet BC' },
-            { id: 'g-003', src: 'images/gallery3.jpg', caption: 'Cabin renovation in Christina Lake' },
-            { id: 'g-004', src: 'images/gallery4.jpg', caption: 'Helical (tapered tread) staircase' },
-            { id: 'g-005', src: 'images/gallery5.jpg', caption: 'Backyard Bar' },
-            { id: 'g-006', src: 'images/gallery6.jpg', caption: 'Custom bus conversion in Australia' },
-            { id: 'g-007', src: 'images/gallery7.jpg', caption: 'Exterior of the Australian Bus.' },
-            { id: 'g-008', src: 'images/gallery8.jpg', caption: 'Modifying package chutes for FedEx' },
-            { id: 'g-009', src: 'images/gallery9.jpg', caption: 'Bathroom remodel for an indie film studio' },
-            { id: 'g-010', src: 'images/gallery10.jpg', caption: 'Small cedar siding job in Powell River' },
-            { id: 'g-011', src: 'images/gallery11.jpg', caption: 'Cedar fencing job in Sechelt (1/2)' },
-            { id: 'g-012', src: 'images/gallery12.jpg', caption: 'Cedar fencing job in Sechelt (2/2)' },
-            { id: 'g-013', src: 'images/gallery13.jpg', caption: 'Temporary + Re-useable pool deck build for a music festival' },
-            { id: 'g-014', src: 'images/gallery14.jpg', caption: 'Rebuilding a rotton deck while still supporting above roof' },
-            { id: 'g-015', src: 'images/gallery15.jpg', caption: 'E-450 Bus Conversion' },
-            { id: 'g-016', src: 'images/gallery16.jpg', caption: 'Victorian finishing work (Film)' },
-            { id: 'g-017', src: 'images/gallery17.jpg', caption: 'Möbius spiral beam stage' },
-            { id: 'g-018', src: 'images/gallery18.jpg', caption: 'Möbius beam construction' },
-            { id: 'g-019', src: 'images/gallery19.jpg', caption: 'Custom tool box' },
+            { id: 'g-001', src: '/images/gallery1.jpg', caption: 'Custom Gazebo' },
+            { id: 'g-002', src: '/images/gallery2.jpg', caption: 'New build in Lillooet BC' },
+            { id: 'g-003', src: '/images/gallery3.jpg', caption: 'Cabin renovation in Christina Lake' },
+            { id: 'g-004', src: '/images/gallery4.jpg', caption: 'Helical (tapered tread) staircase' },
+            { id: 'g-005', src: '/images/gallery5.jpg', caption: 'Backyard Bar' },
+            { id: 'g-006', src: '/images/gallery6.jpg', caption: 'Custom bus conversion in Australia' },
+            { id: 'g-007', src: '/images/gallery7.jpg', caption: 'Exterior of the Australian Bus.' },
+            { id: 'g-008', src: '/images/gallery8.jpg', caption: 'Modifying package chutes for FedEx' },
+            { id: 'g-009', src: '/images/gallery9.jpg', caption: 'Bathroom remodel for an indie film studio' },
+            { id: 'g-010', src: '/images/gallery10.jpg', caption: 'Small cedar siding job in Powell River' },
+            { id: 'g-011', src: '/images/gallery11.jpg', caption: 'Cedar fencing job in Sechelt (1/2)' },
+            { id: 'g-012', src: '/images/gallery12.jpg', caption: 'Cedar fencing job in Sechelt (2/2)' },
+            { id: 'g-013', src: '/images/gallery13.jpg', caption: 'Temporary + Re-useable pool deck build for a music festival' },
+            { id: 'g-014', src: '/images/gallery14.jpg', caption: 'Rebuilding a rotton deck while still supporting above roof' },
+            { id: 'g-015', src: '/images/gallery15.jpg', caption: 'E-450 Bus Conversion' },
+            { id: 'g-016', src: '/images/gallery16.jpg', caption: 'Victorian finishing work (Film)' },
+            { id: 'g-017', src: '/images/gallery17.jpg', caption: 'Möbius spiral beam stage' },
+            { id: 'g-018', src: '/images/gallery18.jpg', caption: 'Möbius beam construction' },
+            { id: 'g-019', src: '/images/gallery19.jpg', caption: 'Custom tool box' },
           ];
 
           // Function to scroll to a section
@@ -76,14 +76,14 @@
               <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
                 <div className="container mx-auto px-4 py-1 flex justify-between items-center">
                   <a href="#home" className="flex items-center" onClick={() => scrollToSection('home')}>
-                    {/* Replaced text with image and added logoError fallback logic */}
+                    {/* UPDATED: Logo path now /images/... */}
                     {logoError ? (
                       <span className="text-2xl font-bold text-orange-800">
                         TimberGrid Studio
                       </span>
                     ) : (
                       <img
-                        src="images/timbergrid_logo.jpg"
+                        src="/images/timbergrid_logo.jpg"
                         alt="TimberGrid Studio Logo"
                         className="h-[120px] transition-opacity duration-300" 
                         onError={(e) => {
@@ -122,14 +122,14 @@
                 </div>
               </nav>
 
-              {/* Hero Section - Setting deployment-ready relative path */}
+              {/* Hero Section */}
               <section
                 id="home"
                 className="relative h-screen flex items-center justify-center text-white bg-green-900" // bg-green-900 as solid color fallback
               >
-                {/* Absolute positioned <img> tag - **Updated to use /images/hero_background.jpg** */}
+                {/* UPDATED: Background image path now /images/... */}
                 <img
-                  src="images/hero_background.jpg" // PATH CORRECTED: Removed leading slash (/)
+                  src="/images/hero_background.jpg"
                   alt="Timber structure under construction"
                   className="absolute inset-0 w-full h-full object-cover"
                   // Add a fallback for the live environment if the image is missing
@@ -145,7 +145,6 @@
                     Building Dreams, One Project at a Time
                   </h1>
                   {/* FONT SIZE DECREASED by adjusting responsive classes down (from text-lg/xl/2xl to text-sm/base/lg) */}
-                  {/* FIX: Changed 'class' to 'className' to resolve React warning */}
                   <p className="text-sm sm:text-base md:text-lg mb-8 rounded-lg p-2 bg-stone-900 bg-opacity-70">
                     Your Vision, Our Craft
                   </p>
@@ -164,15 +163,17 @@
                   <h2 className="text-4xl font-bold text-center text-green-800 mb-12">About Us</h2>
                   <div className="flex flex-col md:flex-row items-center md:space-x-12">
                     <div className="md:w-1/2 mb-8 md:mb-0">
+                      {/* UPDATED: About image path now /images/... */}
                       <img
-                        src="images/about_me.jpg" // PATH CORRECTED: Removed leading slash (/)
+                        src="/images/about_me.jpg"
                         alt="Joel working on carpentry"
                         className="rounded-lg shadow-xl w-full h-90 object-contain" // MODIFIED: Changed object-cover to object-contain for full visibility
                         // Fallback to a placeholder image if the file is not found
                         onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/600x400/2C5F2D/FFFFFF?text=About+Joel'; }}
                       />
                     </div>
-                    <div className="md:w-1/2 text-lg leading-relaxed">
+                    {/* FIX: Changed invalid 'className:w-1/2' to valid 'className="md:w-1/2"' */}
+                    <div className="md:w-1/2 text-lg leading-relaxed"> 
                       <p className="mb-4">
                         Joel brings over 15 years of hands-on experience in the construction world, with a background that stretches from residential builds and renovations to concrete work and fine finishing carpentry.
                       </p>
@@ -308,6 +309,7 @@
         const GalleryImageCard = ({ item }) => (
           <div className="bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-2xl hover:scale-[1.02]">
             <div className="aspect-[4/3] overflow-hidden">
+              {/* Image path comes from galleryData, which is now root-relative */}
               <img
                 src={item.src}
                 alt={item.caption}
