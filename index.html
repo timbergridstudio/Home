@@ -96,6 +96,9 @@
                   <div className="hidden md:flex space-x-6">
                     <NavItem label="Home" sectionId="home" onClick={() => scrollToSection('home')} active={activeSection === 'home'} />
                     <NavItem label="About Us" sectionId="about" onClick={() => scrollToSection('about')} active={activeSection === 'about'} />
+                    {/* NEW: Coverage Area Nav Item added */}
+                    <NavItem label="Coverage" sectionId="coverage" onClick={() => scrollToSection('coverage')} active={activeSection === 'coverage'} />
+                    {/* End of new Nav Item */}
                     <NavItem label="Services" sectionId="services" onClick={() => scrollToSection('services')} active={activeSection === 'services'} />
                     {/* UPDATED: Changed "Projects" to "Gallery" */}
                     <NavItem label="Gallery" sectionId="projects" onClick={() => scrollToSection('projects')} active={activeSection === 'projects'} />
@@ -115,12 +118,28 @@
                 <div id="mobile-menu" className="hidden md:hidden bg-white py-2 shadow-inner">
                   <MobileNavItem label="Home" sectionId="home" onClick={() => { scrollToSection('home'); document.getElementById('mobile-menu').classList.add('hidden'); }} />
                   <MobileNavItem label="About Us" sectionId="about" onClick={() => { scrollToSection('about'); document.getElementById('mobile-menu').classList.add('hidden'); }} />
+                  {/* NEW: Coverage Area Mobile Nav Item added */}
+                  <MobileNavItem label="Coverage" sectionId="coverage" onClick={() => { scrollToSection('coverage'); document.getElementById('mobile-menu').classList.add('hidden'); }} />
+                  {/* End of new Mobile Nav Item */}
                   <MobileNavItem label="Services" sectionId="services" onClick={() => { scrollToSection('services'); document.getElementById('mobile-menu').classList.add('hidden'); }} />
                   {/* UPDATED: Changed "Projects" to "Gallery" */}
                   <MobileNavItem label="Gallery" sectionId="projects" onClick={() => { scrollToSection('projects'); document.getElementById('mobile-menu').classList.add('hidden'); }} />
                   <MobileNavItem label="Contact" sectionId="contact" onClick={() => { scrollToSection('contact'); document.getElementById('mobile-menu').classList.add('hidden'); }} />
                 </div>
               </nav>
+
+              {/* NEW: Floating Call Bubble (fixed to top right) */}
+              <a 
+                  href="tel:6729623071" 
+                  className="fixed top-[120px] right-4 z-50 
+                             bg-orange-600 hover:bg-orange-700 text-white 
+                             font-extrabold text-sm sm:text-base 
+                             px-4 py-2 rounded-full shadow-2xl 
+                             transition duration-300 transform hover:scale-105 
+                             whitespace-nowrap"
+              >
+                  Call us today @ 672-962-3071
+              </a>
 
               {/* Hero Section - Setting deployment-ready relative path */}
               <section
@@ -163,11 +182,13 @@
                 <div className="container mx-auto px-4">
                   <h2 className="text-4xl font-bold text-center text-green-800 mb-12">About Us</h2>
                   <div className="flex flex-col md:flex-row items-center md:space-x-12">
-                    <div className="md:w-1/2 mb-8 md:mb-0">
+                    {/* UPDATED: Added flex justify-center to center the image within the md:w-1/2 column */}
+                    <div className="md:w-1/2 mb-8 md:mb-0 flex justify-center">
                       <img
                         src="images/about_me.jpg" // PATH CORRECTED: Removed leading slash (/)
                         alt="Joel working on carpentry"
-                        className="rounded-lg shadow-xl w-full h-90 object-contain" // MODIFIED: Changed object-cover to object-contain for full visibility
+                        /* UPDATED: Set width to 75% on medium screens and up to shrink by 25% */
+                        className="rounded-lg shadow-xl w-full md:w-[75%] h-90 object-contain" 
                         // Fallback to a placeholder image if the file is not found
                         onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/600x400/2C5F2D/FFFFFF?text=About+Joel'; }}
                       />
@@ -186,6 +207,27 @@
                   </div>
                 </div>
               </section>
+              
+              {/* START NEW: Coverage Area Section */}
+              <section id="coverage" className="py-16 bg-stone-100">
+                <div className="container mx-auto px-4 text-center">
+                    <h2 className="text-4xl font-bold text-center text-green-800 mb-12">Coverage Area</h2>
+                    <div className="max-w-4xl mx-auto rounded-lg shadow-xl overflow-hidden bg-white p-6">
+                        <img
+                            src="images/coverage_map.jpg"
+                            alt="Map showing 50km coverage radius around Ladysmith, BC"
+                            /* UPDATED: Set width to 60% and centered (mx-auto) to shrink by 40% */
+                            className="w-[60%] h-auto object-cover rounded-lg mb-6 shadow-md mx-auto"
+                            // Placeholder if the image is missing
+                            onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/800x400/5C8E64/FFFFFF?text=Coverage+Map+Placeholder'; }}
+                        />
+                        <p className="text-xl font-semibold text-stone-700">
+                            We are happy to offer our services within <span className="text-orange-600 font-bold">50km of Ladysmith, BC</span>.
+                        </p>
+                    </div>
+                </div>
+              </section>
+              {/* END NEW: Coverage Area Section */}
 
               {/* Services Section */}
               <section id="services" className="py-16 bg-stone-200">
@@ -255,7 +297,8 @@
                     <p className="text-xl font-semibold text-stone-700 mb-4">
                       Ready to discuss your project? Call or text us today!
                     </p>
-                    <a href="tel:6729623071" className="text-6xl font-extrabold text-orange-500 hover:text-orange-600 transition duration-300 block p-4 rounded-lg bg-stone-100 shadow-inner">
+                    {/* Phone number size adjusted for mobile responsiveness */}
+                    <a href="tel:6729623071" className="text-4xl md:text-6xl font-extrabold text-orange-500 hover:text-orange-600 transition duration-300 block p-4 rounded-lg bg-stone-100 shadow-inner">
                       (672) 962 - 3071
                     </a>
                   </div>
